@@ -1,11 +1,18 @@
 {
   "name": "test-release-plan",
   "version": "1.0.0",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:kategengler/test-release-plan.git"
+  },
+  "license": "ISC",
+  "author": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "release-plan": "^0.13.1"
+  }
 }
