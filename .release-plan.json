@@ -1,0 +1,17 @@
+{
+  "solution": {
+    "test-release-plan": {
+      "impact": "patch",
+      "oldVersion": "1.0.0",
+      "newVersion": "1.0.1",
+      "constraints": [
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :house: Internal"
+        }
+      ],
+      "pkgJSONPath": "./package.json"
+    }
+  },
+  "description": "## Release (2025-02-27)\n\ntest-release-plan 1.0.1 (patch)\n\n#### :house: Internal\n* `test-release-plan`\n  * [#3](https://github.com/kategengler/test-release-plan/pull/3) Use paths/paths-ignore instead of checking with git for ([@kategengler](https://github.com/kategengler))\n  * [#1](https://github.com/kategengler/test-release-plan/pull/1) Add release-plan ([@kategengler](https://github.com/kategengler))\n\n#### Committers: 1\n- Katie Gengler ([@kategengler](https://github.com/kategengler))\n"
+}
