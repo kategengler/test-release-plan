@@ -68,6 +68,11 @@ jobs:
             jq .description .release-plan.json -r >> $GITHUB_OUTPUT
             echo 'EOF' >> $GITHUB_OUTPUT
             rm release-plan-stderr.txt
+          
+            if [ $(jq '.solution | length' .release-plan.json) -eq 1 ]; then
+              new_version=$(jq -r '.solution[].newVersion' .release-plan.json)
+              echo "new_version=$new_version" >> $GITHUB_OUTPUT
+            fi
           fi
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
@@ -77,7 +82,7 @@ jobs:
           commit-message: "Prepare Release using 'release-plan'"
           labels: "internal"
           branch: release-preview
-          title: Prepare Release
+          title: Prepare Release {{ steps.explanation.outputs.new_version }}
           body: |
             This PR is a preview of the release that [release-plan](https://github.com/embroider-build/release-plan) has prepared. To release you should just merge this PR 👍
 
