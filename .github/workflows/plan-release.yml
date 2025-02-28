@@ -21,7 +21,7 @@ jobs:
     outputs:
       command: ${{ steps.check-release.outputs.is-release }}
     steps:
-      - uses: kategengler/actions/release-plan/check-if-release@v0.0.1
+      - uses: kategengler/actions/release-plan/check-if-release@v0.0.2
         id: check-release
 
   create-prepare-release-pr:
