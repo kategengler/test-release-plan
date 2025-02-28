@@ -57,7 +57,7 @@ jobs:
         id: explanation
         run: |
           set +e
-          pnpm release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
+          release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
 
           if [ $? -ne 0 ]; then
             echo 'text<<EOF' >> $GITHUB_OUTPUT
