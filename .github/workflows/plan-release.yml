@@ -74,7 +74,6 @@ jobs:
               echo "new_version=$new_version" >> $GITHUB_OUTPUT
             fi
           fi
-          TODO: move all the echoing to GITHUB_OUTPUT To the end
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
 
