@@ -37,8 +37,13 @@ jobs:
       pull-requests: write
     # only run on push event or workflow dispatch if plan wasn't updated (don't create a release plan when we're releasing)
     # only run on labeled event if the PR has already been merged
-    if: ((github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.is-this-a-release.outputs.is-release != 'release') || (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
-
+    if: >
+      needs.is-this-a-release.outputs.is-release != 'release' &&
+      (
+        github.event_name == 'push' ||
+        github.event_name == 'workflow_dispatch' ||
+        (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
+      )
     steps:
       - uses: actions/checkout@v4
         # We need to download lots of history so that
