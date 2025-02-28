@@ -1,4 +1,4 @@
-name: Release Plan Review
+name: Plan Release
 on:
   workflow_dispatch:
   push:
@@ -15,8 +15,8 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  check-plan:
-    name: "Check Release Plan"
+  is-this-a-release:
+    name: "Is this a release?"
     runs-on: ubuntu-latest
     outputs:
       command: ${{ steps.check-release.outputs.command }}
@@ -25,23 +25,23 @@ jobs:
         with:
           fetch-depth: 2
           ref: 'main'
-      # This will only cause the `check-plan` job to have a "command" of `release`
+      # This will only cause the `is-this-a-release` job to have a "command" of `release`
       # when the .release-plan.json file was changed on the last commit.
       - id: check-release
         run: if git diff --name-only HEAD HEAD~1 | grep -w -q ".release-plan.json"; then echo "command=release"; fi >> $GITHUB_OUTPUT
 
-  prepare-release-notes:
-    name: Prepare Release Notes
+  create-prepare-release-pr:
+    name: Create Prepare Release PR
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: check-plan
+    needs: is-this-a-release
     permissions:
       contents: write
       issues: read
       pull-requests: write
-    # only run on push event if plan wasn't updated (don't create a release plan when we're releasing)
+    # only run on push event or workflow dispatch if plan wasn't updated (don't create a release plan when we're releasing)
     # only run on labeled event if the PR has already been merged
-    if: ((github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.check-plan.outputs.command != 'release') || (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
+    if: ((github.event_name == 'push' || github.event_name == 'workflow_dispatch') && needs.is-this-a-release.outputs.command != 'release') || (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
 
     steps:
       - uses: actions/checkout@v4
