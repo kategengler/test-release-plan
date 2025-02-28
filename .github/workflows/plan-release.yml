@@ -74,6 +74,7 @@ jobs:
               echo "new_version=$new_version" >> $GITHUB_OUTPUT
             fi
           fi
+          TODO: move all the echoing to GITHUB_OUTPUT To the end
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
 
@@ -82,7 +83,7 @@ jobs:
           commit-message: "Prepare Release using 'release-plan'"
           labels: "internal"
           branch: release-preview
-          title: Prepare Release {{ steps.explanation.outputs.new_version }}
+          title: Prepare Release ${{ steps.explanation.outputs.new_version }}
           body: |
             This PR is a preview of the release that [release-plan](https://github.com/embroider-build/release-plan) has prepared. To release you should just merge this PR 👍
 
