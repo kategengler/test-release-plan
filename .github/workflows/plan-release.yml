@@ -21,7 +21,7 @@ jobs:
     outputs:
       is-release: ${{ steps.check-release.outputs.is-release }}
     steps:
-      - uses: kategengler/actions/release-plan/check-if-release@v0.0.3
+      - uses: kategengler/actions/release-plan/check-if-release@v0.0.4
         with:
           ref: 'main'
         id: check-release
@@ -45,43 +45,12 @@ jobs:
         (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
       )
     steps:
-      - uses: actions/checkout@v4
-        # We need to download lots of history so that
-        # github-changelog can discover what's changed since the last release
+      - uses: kategengler/actions/release-plan/check-if-release@v0.0.4
         with:
-          fetch-depth: 0
           ref: 'main'
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 18
-      - name: "Find Release Plan Version"
-        id: find-release-plan-version
-        run: |
-          release_plan_version=$(jq -r '.devDependencies["release-plan"]' package.json)
-          echo "release_plan_version=$release_plan_version" >> $GITHUB_OUTPUT
-      - run: npm install -g release-plan@"${{steps.find-release-plan-version.outputs.release_plan_version}}"
-      - name: "Generate Explanation and Prep Changelogs"
-        id: explanation
-        run: |
-          set +e
-          release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
-
-          if [ $? -ne 0 ]; then
-            release_plan_output=$(cat release-plan-stderr.txt)
-          else
-            release_plan_output=$(jq .description .release-plan.json -r)
-            rm release-plan-stderr.txt
-          
-            if [ $(jq '.solution | length' .release-plan.json) -eq 1 ]; then
-              new_version=$(jq -r '.solution[].newVersion' .release-plan.json)
-              echo "new_version=v$new_version" >> $GITHUB_OUTPUT
-            fi
-          fi
-          echo 'text<<EOF' >> $GITHUB_OUTPUT
-          echo "$release_plan_output" >> $GITHUB_OUTPUT
-          echo 'EOF' >> $GITHUB_OUTPUT
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
+        id: explanation
 
       - uses: peter-evans/create-pull-request@v7
         with:
