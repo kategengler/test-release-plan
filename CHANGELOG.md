@@ -2,6 +2,19 @@
 
 ## Release (2025-02-28)
 
+test-release-plan 1.0.3 (patch)
+
+#### :house: Internal
+* `test-release-plan`
+  * [#10](https://github.com/kategengler/test-release-plan/pull/10) fixup ([@kategengler](https://github.com/kategengler))
+  * [#8](https://github.com/kategengler/test-release-plan/pull/8) Use correct package; remove prevent from release to npm ([@kategengler](https://github.com/kategengler))
+  * [#7](https://github.com/kategengler/test-release-plan/pull/7) Do we need pnpm for plan release? ([@kategengler](https://github.com/kategengler))
+
+#### Committers: 1
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+
+## Release (2025-02-28)
+
 test-release-plan 1.0.2 (patch)
 
 #### :house: Internal
