@@ -19,9 +19,11 @@ jobs:
     name: "Is this a release?"
     runs-on: ubuntu-latest
     outputs:
-      command: ${{ steps.check-release.outputs.is-release }}
+      is-release: ${{ steps.check-release.outputs.is-release }}
     steps:
-      - uses: kategengler/actions/release-plan/check-if-release@v0.0.2
+      - uses: kategengler/actions/release-plan/check-if-release@v0.0.3
+        with:
+          ref: 'main'
         id: check-release
 
   create-prepare-release-pr:
