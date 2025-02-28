@@ -54,10 +54,10 @@ jobs:
 
       - uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "Prepare Release ${{ steps.explanation.outputs.new_version}} using 'release-plan'"
+          commit-message: "Prepare Release ${{ steps.explanation.outputs.new-version}} using 'release-plan'"
           labels: "internal"
           branch: release-preview
-          title: Prepare Release ${{ steps.explanation.outputs.new_version }}
+          title: Prepare Release ${{ steps.explanation.outputs.new-version }}
           body: |
             This PR is a preview of the release that [release-plan](https://github.com/embroider-build/release-plan) has prepared. To release you should just merge this PR 👍
 
