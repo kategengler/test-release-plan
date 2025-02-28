@@ -60,13 +60,9 @@ jobs:
           release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
 
           if [ $? -ne 0 ]; then
-            echo 'text<<EOF' >> $GITHUB_OUTPUT
-            cat release-plan-stderr.txt >> $GITHUB_OUTPUT
-            echo 'EOF' >> $GITHUB_OUTPUT
+            release_plan_output=$(cat release-plan-stderr.txt)
           else
-            echo 'text<<EOF' >> $GITHUB_OUTPUT
-            jq .description .release-plan.json -r >> $GITHUB_OUTPUT
-            echo 'EOF' >> $GITHUB_OUTPUT
+            release_plan_output=$(jq .description .release-plan.json -r)
             rm release-plan-stderr.txt
           
             if [ $(jq '.solution | length' .release-plan.json) -eq 1 ]; then
@@ -74,6 +70,9 @@ jobs:
               echo "new_version=v$new_version" >> $GITHUB_OUTPUT
             fi
           fi
+          echo 'text<<EOF' >> $GITHUB_OUTPUT
+          echo "$release_plan_output" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
 
