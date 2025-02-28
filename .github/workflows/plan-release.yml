@@ -71,7 +71,7 @@ jobs:
           
             if [ $(jq '.solution | length' .release-plan.json) -eq 1 ]; then
               new_version=$(jq -r '.solution[].newVersion' .release-plan.json)
-              echo "new_version=$new_version" >> $GITHUB_OUTPUT
+              echo "new_version=v$new_version" >> $GITHUB_OUTPUT
             fi
           fi
         env:
@@ -79,7 +79,7 @@ jobs:
 
       - uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "Prepare Release using 'release-plan'"
+          commit-message: "Prepare Release ${{ steps.explanation.outputs.new_version}} using 'release-plan'"
           labels: "internal"
           branch: release-preview
           title: Prepare Release ${{ steps.explanation.outputs.new_version }}
