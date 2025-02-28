@@ -49,14 +49,10 @@ jobs:
         with:
           fetch-depth: 0
           ref: 'main'
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
       - uses: actions/setup-node@v4
         with:
           node-version: 18
-          cache: pnpm
-      - run: pnpm install --frozen-lockfile
+      - run: npm install -g @embroider/release-plan
       - name: "Generate Explanation and Prep Changelogs"
         id: explanation
         run: |
