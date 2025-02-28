@@ -45,7 +45,7 @@ jobs:
         (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
       )
     steps:
-      - uses: kategengler/actions/release-plan/check-if-release@v0.0.4
+      - uses: kategengler/actions/release-plan/prepare@v0.0.4
         with:
           ref: 'main'
         env:
