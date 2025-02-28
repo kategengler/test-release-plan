@@ -2,6 +2,17 @@
 
 ## Release (2025-02-28)
 
+test-release-plan 1.0.6 (patch)
+
+#### :house: Internal
+* `test-release-plan`
+  * [#27](https://github.com/kategengler/test-release-plan/pull/27) Bump action, fix outputs ([@kategengler](https://github.com/kategengler))
+
+#### Committers: 1
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+
+## Release (2025-02-28)
+
 test-release-plan 1.0.5 (patch)
 
 #### :house: Internal
