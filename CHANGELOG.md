@@ -2,6 +2,23 @@
 
 ## Release (2025-02-28)
 
+test-release-plan 1.0.5 (patch)
+
+#### :house: Internal
+* `test-release-plan`
+  * [#25](https://github.com/kategengler/test-release-plan/pull/25) Bump version ([@kategengler](https://github.com/kategengler))
+  * [#24](https://github.com/kategengler/test-release-plan/pull/24) Try using from another repo ([@kategengler](https://github.com/kategengler))
+  * [#23](https://github.com/kategengler/test-release-plan/pull/23) Try using a composite action to test release ([@kategengler](https://github.com/kategengler))
+  * [#22](https://github.com/kategengler/test-release-plan/pull/22) Damn $ ([@kategengler](https://github.com/kategengler))
+  * [#21](https://github.com/kategengler/test-release-plan/pull/21) Split back into separate step -- I prefer the output of the version used ([@kategengler](https://github.com/kategengler))
+  * [#19](https://github.com/kategengler/test-release-plan/pull/19) Fix typo and clean up a bit ([@kategengler](https://github.com/kategengler))
+  * [#18](https://github.com/kategengler/test-release-plan/pull/18) Use release-plan version from package.json ([@kategengler](https://github.com/kategengler))
+
+#### Committers: 1
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+
+## Release (2025-02-28)
+
 test-release-plan 1.0.4 (patch)
 
 #### :house: Internal
