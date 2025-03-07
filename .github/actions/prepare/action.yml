@@ -44,7 +44,7 @@ runs:
         
         if [ $? -ne 0 ]; then
           release_plan_output=$(cat release-plan-stderr.txt)
-          echo "::warning::Failed to run release-plan prepare"
+          echo "::error::Failed to run release-plan prepare"
         else
           release_plan_output=$(jq .description .release-plan.json -r)
           rm release-plan-stderr.txt        
