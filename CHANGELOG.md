@@ -1,5 +1,26 @@
 # Changelog
 
+## Release (2025-03-18)
+
+test-release-plan 2.0.0 (major)
+
+#### :boom: Breaking Change
+* `test-release-plan`
+  * [#32](https://github.com/kategengler/test-release-plan/pull/32) Bump to v0.0.5 ([@kategengler](https://github.com/kategengler))
+
+#### :house: Internal
+* `test-release-plan`
+  * [#35](https://github.com/kategengler/test-release-plan/pull/35) Bump actions to version that have install of release plan composed ([@kategengler](https://github.com/kategengler))
+  * [#34](https://github.com/kategengler/test-release-plan/pull/34) Title actions and use 0.0.7 ([@kategengler](https://github.com/kategengler))
+  * [#33](https://github.com/kategengler/test-release-plan/pull/33) Bump to 0.0.6 ([@kategengler](https://github.com/kategengler))
+  * [#32](https://github.com/kategengler/test-release-plan/pull/32) Bump to v0.0.5 ([@kategengler](https://github.com/kategengler))
+  * [#31](https://github.com/kategengler/test-release-plan/pull/31) Correct output ([@kategengler](https://github.com/kategengler))
+  * [#29](https://github.com/kategengler/test-release-plan/pull/29) Would help to run the correct action ([@kategengler](https://github.com/kategengler))
+  * [#28](https://github.com/kategengler/test-release-plan/pull/28) Kg further refinements ([@kategengler](https://github.com/kategengler))
+
+#### Committers: 1
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+
 ## Release (2025-02-28)
 
 test-release-plan 1.0.6 (patch)
