@@ -13,6 +13,6 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "release-plan": "^0.12.0"
+    "release-plan": "^0.16.0"
   }
 }
