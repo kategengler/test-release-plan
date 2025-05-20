@@ -1,5 +1,10 @@
-name: Install Release Plan
-description: 'Install Release Plan; checkout and node setup must run first'
+name: Find Release Plan Version
+description: 'Install Release Plan; checkout must run first'
+
+outputs:
+  version:
+    description: "The version of release plan to use"
+    value: ${{ steps.find-release-plan-version.outputs.release_plan_version }}
 
 runs:
   using: "composite"
@@ -8,7 +13,6 @@ runs:
       id: find-release-plan-version
       run: |
         release_plan_version=$(jq -r '.devDependencies["release-plan"]' package.json)
+        echo "Using release-plan@$release_plan_version"
         echo "release_plan_version=$release_plan_version" >> $GITHUB_OUTPUT
-      shell: bash
-    - run: npm install -g release-plan@"${{steps.find-release-plan-version.outputs.release_plan_version}}"
       shell: bash
