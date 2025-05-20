@@ -27,14 +27,15 @@ runs:
     - uses: actions/setup-node@v4
       with:
         node-version: 18
-    - name: "Install Release Plan"
-      uses: ./.github/actions/install-release-plan
+    - name: "Find Release Plan Version"
+      id: find-release-plan-version
+      uses: ./.github/actions/find-release-plan-version
     - name: "Generate Explanation and Prep Changelogs"
       id: explanation
       run: |
         echo "::group::Running release-plan prepare"
         set +e
-        release-plan prepare 2> >(tee -a release-plan-stderr.txt >&2)
+        npx release-plan@{{steps.find-release-plan-version.outputs.version}} prepare 2> >(tee -a release-plan-stderr.txt >&2)
         
         if [ $? -ne 0 ]; then
           release_plan_output=$(cat release-plan-stderr.txt)
