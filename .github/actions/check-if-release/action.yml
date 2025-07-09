@@ -1,16 +1,22 @@
-name: Check if latest commit is a release
-description: 'Checks if the latest commit triggers a release via release-plan'
+name: Check if Release Plan Should be Generated
+description: 'Checks if release plan should be generated'
 
 outputs:
-  is-release:
-    description: "String 'release' when the latest commit modified the .release-plan.json file to trigger a release"
-    value: ${{ steps.check-release.outputs.is_release }}
+  should-generate:
+    description: "String 'true' when the latest commit modified the .release-plan.json file to trigger a release AND the event is a push OR a workflow_dispatch OR a pull_request_target for PR that has merged"
+    value: ${{ steps.should-generate.outputs.should-generate }}
 
 inputs:
   ref:
     description: 'Primary branch'
     required: true
     default: 'main'
+  event-name:
+    description: 'GitHub event name'
+    required: true
+  event:
+    description: 'Github event payload'
+    required: true
 
 runs:
   using: "composite"
@@ -21,4 +27,15 @@ runs:
         ref: ${{ inputs.ref }}
     - id: check-release
       run: if git diff --name-only HEAD HEAD~1 | grep -w -q ".release-plan.json"; then echo "is_release=release"; fi >> $GITHUB_OUTPUT
+      shell: bash
+    - id: should-generate
+      run: |
+        if [[ "${{ steps.check-release.outputs.is_release }}" != "release" &&
+            ("${{ inputs.event-name }}" == "push" ||
+             "${{ inputs.event-name }}" == "workflow_dispatch" ||
+             ("${{ inputs.event-name }}" == "pull_request_target" && "${{ inputs.event.pull_request.merged == true }}" == "true")) ]]; then
+          echo "should-generate=true" >> $GITHUB_OUTPUT
+        else
+          echo "should-generate=false" >> $GITHUB_OUTPUT
+        fi
       shell: bash

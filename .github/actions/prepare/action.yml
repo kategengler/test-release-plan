@@ -9,24 +9,9 @@ outputs:
     description: "The explanation of the release plan"
     value: ${{ steps.explanation.outputs.text }}
 
-inputs:
-  ref:
-    description: 'Primary branch'
-    required: true
-    default: 'main'
-
 runs:
   using: "composite"
   steps:
-    - uses: actions/checkout@v4
-      # We need to download lots of history so that
-      # github-changelog can discover what's changed since the last release
-      with:
-        fetch-depth: 0
-        ref: ${{ inputs.ref }}
-    - uses: actions/setup-node@v4
-      with:
-        node-version: 18
     - name: "Find Release Plan Version"
       id: find-release-plan-version
       uses: ./.github/actions/find-release-plan-version

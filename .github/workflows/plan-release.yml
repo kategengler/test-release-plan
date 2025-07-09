@@ -15,40 +15,41 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  is-this-a-release:
-    name: "Is this a release?"
+  should-generate-release-plan:
+    name: "Should generate release plan?"
     runs-on: ubuntu-latest
     outputs:
-      is-release: ${{ steps.check-release.outputs.is-release }}
+      should-generate: ${{ steps.should-generate.outputs.should-generate }}
     steps:
       - uses: kategengler/actions/release-plan/check-if-release@v0.0.11
         with:
           ref: 'main'
-        id: check-release
+          event-name: ${{ github.event_name }}
+          github-event: ${{ github.event }}
+        id: should-generate
 
   create-prepare-release-pr:
     name: Create Prepare Release PR
     runs-on: ubuntu-latest
     timeout-minutes: 5
-    needs: is-this-a-release
+    needs: should-generate-release-plan
     permissions:
       contents: write
       issues: read
       pull-requests: write
     # only run on push event or workflow dispatch if plan wasn't updated (don't create a release plan when we're releasing)
     # only run on labeled event if the PR has already been merged
-    if: >
-      needs.is-this-a-release.outputs.is-release != 'release' &&
-      (
-        github.event_name == 'push' ||
-        github.event_name == 'workflow_dispatch' ||
-        (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
-      )
+    if: needs.should-generate-release-plan.outputs.should-generate == 'true' 
     steps:
-      - uses: kategengler/actions/release-plan/prepare@v0.0.11
-        name: "Run release-plan prepare"
+      - uses: kategengler/actions/release-plan/checkout@v0.0.11
         with:
           ref: 'main'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      # Optionally install deps here
+      - uses: kategengler/actions/release-plan/prepare@v0.0.11
+        name: "Run release-plan prepare"
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
         id: explanation
