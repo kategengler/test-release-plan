@@ -1,10 +1,23 @@
 {
   "solution": {
     "test-release-plan": {
-      "impact": "patch",
-      "oldVersion": "1.0.5",
-      "newVersion": "1.0.6",
+      "impact": "major",
+      "oldVersion": "1.0.6",
+      "newVersion": "2.0.0",
+      "tagName": "latest",
       "constraints": [
+        {
+          "impact": "major",
+          "reason": "Appears in changelog section :boom: Breaking Change"
+        },
+        {
+          "impact": "minor",
+          "reason": "Appears in changelog section :rocket: Enhancement"
+        },
+        {
+          "impact": "patch",
+          "reason": "Appears in changelog section :bug: Bug Fix"
+        },
         {
           "impact": "patch",
           "reason": "Appears in changelog section :house: Internal"
@@ -13,5 +26,5 @@
       "pkgJSONPath": "./package.json"
     }
   },
-  "description": "## Release (2025-02-28)\n\ntest-release-plan 1.0.6 (patch)\n\n#### :house: Internal\n* `test-release-plan`\n  * [#27](https://github.com/kategengler/test-release-plan/pull/27) Bump action, fix outputs ([@kategengler](https://github.com/kategengler))\n\n#### Committers: 1\n- Katie Gengler ([@kategengler](https://github.com/kategengler))\n"
+  "description": "## Release (2025-11-04)\n\n* test-release-plan 2.0.0 (major)\n\n#### :boom: Breaking Change\n* `test-release-plan`\n  * [#32](https://github.com/kategengler/test-release-plan/pull/32) Bump to v0.0.5 ([@kategengler](https://github.com/kategengler))\n\n#### :rocket: Enhancement\n* `test-release-plan`\n  * [#39](https://github.com/kategengler/test-release-plan/pull/39) Update to use new action ([@kategengler](https://github.com/kategengler))\n  * [#36](https://github.com/kategengler/test-release-plan/pull/36) Update to new release-plan + newer actions that use find version rather than global install ([@kategengler](https://github.com/kategengler))\n\n#### :bug: Bug Fix\n* `test-release-plan`\n  * [#40](https://github.com/kategengler/test-release-plan/pull/40) Missed update to output variable ([@kategengler](https://github.com/kategengler))\n  * [#38](https://github.com/kategengler/test-release-plan/pull/38) Bump actions to fix typo ([@kategengler](https://github.com/kategengler))\n  * [#37](https://github.com/kategengler/test-release-plan/pull/37) Update actions ([@kategengler](https://github.com/kategengler))\n\n#### :house: Internal\n* `test-release-plan`\n  * [#35](https://github.com/kategengler/test-release-plan/pull/35) Bump actions to version that have install of release plan composed ([@kategengler](https://github.com/kategengler))\n  * [#34](https://github.com/kategengler/test-release-plan/pull/34) Title actions and use 0.0.7 ([@kategengler](https://github.com/kategengler))\n  * [#33](https://github.com/kategengler/test-release-plan/pull/33) Bump to 0.0.6 ([@kategengler](https://github.com/kategengler))\n  * [#32](https://github.com/kategengler/test-release-plan/pull/32) Bump to v0.0.5 ([@kategengler](https://github.com/kategengler))\n  * [#31](https://github.com/kategengler/test-release-plan/pull/31) Correct output ([@kategengler](https://github.com/kategengler))\n  * [#29](https://github.com/kategengler/test-release-plan/pull/29) Would help to run the correct action ([@kategengler](https://github.com/kategengler))\n  * [#28](https://github.com/kategengler/test-release-plan/pull/28) Kg further refinements ([@kategengler](https://github.com/kategengler))\n\n#### Committers: 1\n- Katie Gengler ([@kategengler](https://github.com/kategengler))\n"
 }
