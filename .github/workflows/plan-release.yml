@@ -19,7 +19,7 @@ jobs:
     name: "Should we run release-plan prepare?"
     runs-on: ubuntu-latest
     outputs:
-      is-release: ${{ steps.should-prepare.outputs.should-prepare }}
+      should-prepare: ${{ steps.should-prepare.outputs.should-prepare }}
     steps:
       - uses: release-plan/actions/should-prepare-release@v1
         with:
