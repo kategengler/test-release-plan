@@ -16,7 +16,7 @@ concurrency:
 
 jobs:
   should-run-release-plan-prepare:
-    name: "Should we run release-plan prepare?"
+    name: Should we run release-plan prepare?
     runs-on: ubuntu-latest
     outputs:
       should-prepare: ${{ steps.should-prepare.outputs.should-prepare }}
@@ -35,12 +35,10 @@ jobs:
       contents: write
       issues: read
       pull-requests: write
-    # only run on push event or workflow dispatch if plan wasn't updated (don't create a release plan when we're releasing)
-    # only run on labeled event if the PR has already been merged
     if: needs.should-run-release-plan-prepare.outputs.should-prepare == 'true'    
     steps:
       - uses: release-plan/actions/prepare@v1
-        name: "Run release-plan prepare"
+        name: Run release-plan prepare
         with:
           ref: 'main'
         env:
@@ -48,7 +46,7 @@ jobs:
         id: explanation
 
       - uses: peter-evans/create-pull-request@v7
-        name: "Create Prepare Release PR"
+        name: Create Prepare Release PR
         with:
           commit-message: "Prepare Release ${{ steps.explanation.outputs.new-version}} using 'release-plan'"
           labels: "internal"
