@@ -49,7 +49,6 @@ jobs:
         name: "Run release-plan prepare"
         with:
           ref: 'main'
-          action-version: 'v1'
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
         id: explanation
