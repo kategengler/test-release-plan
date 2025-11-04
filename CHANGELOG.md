@@ -2,6 +2,17 @@
 
 ## Release (2025-11-04)
 
+* test-release-plan 2.1.0 (minor)
+
+#### :rocket: Enhancement
+* `test-release-plan`
+  * [#42](https://github.com/kategengler/test-release-plan/pull/42) Update release plan setup from fork ([@kategengler](https://github.com/kategengler))
+
+#### Committers: 1
+- Katie Gengler ([@kategengler](https://github.com/kategengler))
+
+## Release (2025-11-04)
+
 * test-release-plan 2.0.0 (major)
 
 #### :boom: Breaking Change
