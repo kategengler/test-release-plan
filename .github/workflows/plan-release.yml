@@ -21,7 +21,7 @@ jobs:
     outputs:
       is-release: ${{ steps.check-release.outputs.is-release }}
     steps:
-      - uses: kategengler/actions/release-plan/check-if-release@v0.0.11
+      - uses: release-plan/actions/check-if-release@v1
         with:
           ref: 'main'
         id: check-release
@@ -45,10 +45,11 @@ jobs:
         (github.event_name == 'pull_request_target' && github.event.pull_request.merged == true)
       )
     steps:
-      - uses: kategengler/actions/release-plan/prepare@v0.0.11
+      - uses: release-plan/actions/prepare@v1
         name: "Run release-plan prepare"
         with:
           ref: 'main'
+          action-version: 'v1'
         env:
           GITHUB_AUTH: ${{ secrets.GITHUB_TOKEN }}
         id: explanation
